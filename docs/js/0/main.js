@@ -29,6 +29,20 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         sessionStorage.removeItem(`status`)
         console.debug('----- 以上 -----')
     }
+    /*
+    for (const button of document.querySelectorAll(`.toot-button[data-instance]`)) {
+        console.log(button)
+        console.log(button.dataset)
+        const domain = button.dataset.instance
+        setTootButton(button, domain)
+    }
+    for (const button of document.querySelectorAll(`.toot-button:not([data-instance])`)) {
+        const domain = getDomain()
+        if (!isExistInstance(domain)) { alert(`指定インスタンス https://${domain}/ はリンク切れです。`); }
+        console.log(domain)
+        setTootButton(button, domain)
+    }
+    */
     for (const button of document.querySelectorAll(`.toot-button`)) {
         setTootButton(button)
     }

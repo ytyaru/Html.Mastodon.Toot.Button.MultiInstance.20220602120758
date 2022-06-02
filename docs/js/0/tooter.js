@@ -15,6 +15,7 @@ class Tooter {
         const url = `https://${this.domain}/${endpoint}`
         const data = {
             method: 'GET',
+//            headers: (headers) ? {...this.getJsonHeaders(), ...headers} : this.getJsonHeaders()
             headers: this.getJsonHeaders(headers)
         }
         console.debug(url)
@@ -37,6 +38,7 @@ class Tooter {
         if (params) { data.body = body }
         console.debug(params)
         console.debug(data)
+        //const res = await fetch(url, data).catch((e)=>throw e);
         const res = await fetch(url, data)
         console.debug(res)
         const json = await res.json()
@@ -57,7 +59,9 @@ class Tooter {
     authorize(client_id) {
         console.debug('----- authorize -----')
         const scope='read+write+follow+push'
+        //const redirect_uri = this.redirect_uri
         const redirect_uri = this.redirect_uri + `?domain=${this.domain}`
+        //const url = `https://${this.domain}/oauth/authorize?client_id=${client_id}&scope=${scope}&redirect_uri=${redirect_uri}&response_type=code`
         const url = new URL(`https://${this.domain}/oauth/authorize?client_id=${client_id}&scope=${scope}&redirect_uri=${redirect_uri}&response_type=code`).href
         console.debug(url)
         window.location.href = url
